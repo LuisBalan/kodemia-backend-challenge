@@ -46,6 +46,7 @@ body {
 }
 
 .button-container {
+<<<<<<< HEAD
   position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -86,16 +87,45 @@ body {
 }
 
 .btn-sucess {
+=======
+>>>>>>> search-bar
   position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  margin: .25rem;
-  padding: .25rem;
   border: transparent;
-  left: 87%;
+  left: 90%;
 }
 
-.btn-sucess:hover {
-  background-color: whitesmoke;
+.button-container:hover {
+  background-color: #e3e3e4;
+}
+
+.button-container .icon-container {
+  width: 25px;
+  height: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.button-container .icon-container .search-icon {
+  color: black;
 }
 
 .navbar-nav_bar {
@@ -1130,20 +1160,42 @@ body {
   color: black;
 }
 
-.headMenu .txtSet {
-  font-size: 16px;
-  font-weight: 600;
-  color: #585555;
-  padding-top: 7px;
-  padding-left: 17px;
-  border-radius: 5px;
-  height: 40px;
-  width: 95px;
+.headMenu .post-options-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 25%;
+  position: relative;
+  left: -75px;
 }
 
-.headMenu .txtSet:hover {
-  background-color: #e6e3e3;
-  color: black;
+.headMenu .post-options-container .txtSet {
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 450;
+  color: #696969;
+  padding: 8px 5px 7px 5px;
+  border-radius: 5px;
+}
+
+.headMenu .post-options-container .txtSet:hover {
+  background-color: white;
+  color: #2c38c0;
+  font-weight: 600;
 }
 
 #contMenu {
@@ -1151,6 +1203,14 @@ body {
   padding: 15px 200px 10px 140px;
   min-height: 100vh;
   height: 100%;
+}
+
+#contMenu #bodyCard .tab-content {
+  width: 100%;
+}
+
+#contMenu #bodyCard .tab-content .card {
+  width: 100%;
 }
 
 #contMenu .list-group-item {
@@ -1190,8 +1250,9 @@ body {
 }
 
 #contMenu .tab-pane .card .card-body {
-  width: 730px;
-  height: 350px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   background-color: white;
   border-radius: 10px;
   border: #d6d3d3 1px solid;

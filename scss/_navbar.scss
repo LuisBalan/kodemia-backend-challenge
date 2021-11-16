@@ -43,6 +43,7 @@ body {
 }
 
 .button-container {
+<<<<<<< HEAD
     position: absolute;
     display: flex;
     justify-content: center;
@@ -73,15 +74,34 @@ body {
 }
 
 .btn-sucess {
+=======
+>>>>>>> search-bar
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    margin: .25rem;
-    padding: .25rem;
+    // margin: .25rem;
+    // padding: .25rem;
     border: transparent;
-    left: 87%;
+    // top: px;
+    left: 90%;
 
     &:hover {
-        background-color: lighten(#d6d6d7, 12);        
+        background-color: lighten(#d6d6d7, 5);        
+    }
+
+    .icon-container{
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .search-icon{
+            color: black;
+        }
     }
 }
 

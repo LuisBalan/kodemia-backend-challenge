@@ -15,22 +15,37 @@ body{
         color: black;
     }
 
-    .txtSet{
-        font-size: 16px;
-        font-weight: 600;
-        color: #585555;
-        padding-top: 7px;
-        padding-left: 17px;
-        border-radius: 5px;
-        //border: red 1px solid;
-        height: 40px;
-        width: 95px;
+    .post-options-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 25%;
+        position: relative;
+        left: -75px;
+
+
+        .txtSet{
+            text-align: center;
+            justify-content:center;
+            display: flex;
+            white-space: nowrap;
+            font-size: 16px;
+            font-weight: 450;
+            color: #696969;
+            padding: 8px 5px 7px 5px;
+            // padding-left: 17px;
+            border-radius: 5px;
+            // height: 40px;
+            // width: 95px;
+        }
+    
+        .txtSet:hover{
+            background-color: white;
+            color: $gralBlueHover;
+            font-weight: 600;
+        }
     }
 
-    .txtSet:hover{
-        background-color: $HoverGray;
-        color: black;
-    }
 }
 
 
@@ -40,6 +55,20 @@ body{
     padding: 15px 200px 10px 140px;
     min-height: 100vh;
     height: 100%;
+
+    #bodyCard{
+        // border: 1px solid red;
+
+        .tab-content{
+            width: 100%;
+            // border: 1px solid yellow;
+
+            .card{
+                // border: 1px solid green;
+                width: 100%;
+            }
+        }
+    }
     
     .list-group-item{
         width: 240px;
@@ -77,9 +106,9 @@ body{
         border-radius: 10px;
         border: rgb(236, 235, 235) 1px solid;
         .card-body{
-            
-            width: 730px;
-            height: 350px;
+            display: flex;
+            // width: 730px;
+            // height: 350px;
             background-color: white;
             border-radius: 10px;
             border: rgb(214, 211, 211) 1px solid;
@@ -98,6 +127,7 @@ body{
                 font-weight: lighter;
                 font-size: 18px;
                 color: black;
+            
             }
 
             .card-link{
