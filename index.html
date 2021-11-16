@@ -24,6 +24,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="./img/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="manifest" href="./img/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
@@ -54,14 +55,11 @@
                     <form class="d-flex d-flex_bar">
                         <input class="form-control me-2 form-control_bar" type="search" placeholder="Search..."
                             aria-label="Search">
-                        <button class="btn btn-outline-success btn-sucess" type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                class="crayons-icon">
-                                <path
-                                    d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z">
-                                </path>
-                            </svg>
-                        </button>
+                        <div class = "button-container">
+                                <a id = "lupa" class = 'icon-container' href = "#">
+                                    <span class="material-icons search-icon">search</span>
+                                </a>                                                    
+                        </div>
                     </form>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mb-2 mb-lg-0 navbar-nav_bar">
@@ -97,7 +95,7 @@
                                 <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     <span class="avatar_bar">
-                                        <img class="avatar_image" alt="" id="nav-profile-image" src="/img/avatar.png">
+                                        <img class="avatar_image" alt="" id="nav-profile-image" src="/img/people11.png">
                                     </span>
                                 </a>
                                 <ul class="dropdown-menu menu-user" aria-labelledby="navbarDropdown">
@@ -647,11 +645,16 @@
                 </div>
                 <!-- Main body -->
                 <div class="col-lg-6 col-md-6 col-sm-10 main__body">
-                    <nav>
+                    <nav class="d-flex justify-content-between ">
                         <ul class="d-flex ms-3">
-                            <li><a href="#" class="li-select fw-bolder me-3 text-dark">Feed</a></li>
-                            <li><a href="#" class="me-3 text-dark">Latest</a></li>
-                            <li><a href="#" class="text-dark">Top</a></li>
+                            <li><a href="#" class="li-select me-3 text-dark headFilter headSelected" id="feed">Feed</a></li>
+                            <li><a href="#" class="me-3 text-dark headFilter" id="latest">Latest</a></li>
+                            <li><a href="#" class="text-dark headFilter" id="top">Top</a></li>
+                        </ul>
+                        <ul class="d-flex ms-3 topLinked">
+                            <li><a href="#" class="li-select me-3 text-dark headFilterByTime headSelected" id="week">Week</a></li>
+                            <li><a href="#" class="me-3 text-dark headFilterByTime" id="month">Month</a></li>
+                            <li><a href="#" class="text-dark headFilterByTime" id="year">Year</a></li>
                         </ul>
                     </nav>
 
@@ -893,7 +896,6 @@
     -->
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./js/balan.js"></script>
     <script src="./js/cards.js"></script>
 </body>
 
