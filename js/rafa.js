@@ -1,5 +1,5 @@
 $(document).ready( ()=>{
-
+//Create Post
     $('#createPost').click( () => {
         const title = $.trim($("#title").val());
         const body = $.trim($("#body").val());
@@ -16,7 +16,7 @@ $(document).ready( ()=>{
             data: JSON.stringify({title, body, url,tags,date,likes}),
             
             success: (response) =>{
-                console.log(response)
+                console.log(response);
                 alert('Your Post was succesfully added');
                 $('#title').val('');
                 $('#body').val('');
@@ -24,34 +24,13 @@ $(document).ready( ()=>{
                 $('#tags').val('');
             } ,
             error: (error) => {
-                console.log(error)
+                console.log(error);
                 alert('An error occurred while processing your request');
             },
             async: true,
         })
 
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 });

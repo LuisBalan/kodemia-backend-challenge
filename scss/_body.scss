@@ -81,5 +81,24 @@
         }
     }
 
+    .headFilter{
+        &:hover {
+            background: #e6e3e3;
+        }
+    }
+
+    .headFilterByTime{
+        &:hover {
+            background: #e6e3e3;
+        }
+    }
+
+    .headSelected{
+        font-weight: bolder;
+    }
+
+    .topLinked{
+        visibility: hidden;
+    }
     
 }

@@ -45,46 +45,6 @@ body {
   padding: .4375rem .5rem;
 }
 
-.button-container {
-  position: absolute;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: transparent;
-  left: 90%;
-}
-
-.button-container:hover {
-  background-color: #e3e3e4;
-}
-
-.button-container .icon-container {
-  width: 25px;
-  height: 25px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.button-container .icon-container .search-icon {
-  color: black;
-}
-
 .btn-sucess {
   position: absolute;
   border-radius: 50%;
@@ -888,22 +848,6 @@ div .card_link_ar {
   font-weight: 400;
 }
 
-.main__body .headFilter:hover {
-  background: #e6e3e3;
-}
-
-.main__body .headFilterByTime:hover {
-  background: #e6e3e3;
-}
-
-.main__body .headSelected {
-  font-weight: bolder;
-}
-
-.main__body .topLinked {
-  visibility: hidden;
-}
-
 * {
   text-decoration: none;
   list-style: none;
@@ -1266,3 +1210,4 @@ main {
 .notificationFooter {
   position: relative;
 }
+/*# sourceMappingURL=styles.css.map */
