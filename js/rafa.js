@@ -10,11 +10,12 @@ $(document).ready( ()=>{
         const date = date_format.toISOString().split('T')[0];
         const likes = Math.floor((Math.random() * (100000 + 1 -100)) + 100);
 
+        const postInfo = {title, body, url,tags,date,likes}
+
         $.ajax({
             method: 'POST',
-            url: 'https://js-challenge-a0b1c-default-rtdb.firebaseio.com/.json',
-            data: JSON.stringify({title, body, url,tags,date,likes}),
-            
+            url: 'http://localhost:8080/post?' + $.param(postInfo),
+        
             success: (response) =>{
                 console.log(response);
                 alert('Your Post was succesfully added');
