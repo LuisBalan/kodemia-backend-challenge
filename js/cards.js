@@ -167,20 +167,36 @@ $(document).ready( () => {
         $(father).append(cardContainer);
     }
 
+    const URL = 'http://localhost:8080/post'
     const getInfoPost = () => {
         $.ajax({
             method: 'GET',
-            url: 'https://js-challenge-a0b1c-default-rtdb.firebaseio.com/.json',
-            
-            success: (response) =>{
-                // callback when request succesful
-                console.log(response)
+            // url: 'https://js-challenge-a0b1c-default-rtdb.firebaseio.com/.json',
+            // url: `https://localhost:8080/post/mongodb+srv://rafael:kodemia123@$cluster0.mohlf.mongodb.net/kodemia?retryWrites=true&w=majority`,
+                url: URL,
 
-                const arrayPost = Object.entries(response);
+                success: (response) =>{
+            // FIRST TEST
+            //     // callback cuando la petición es exitosa
+            //     console.log('successful request')
+            //     console.log(response)
+            //     // const posta = JSON.parse(response)
+            //     // console.log(person)
+            //     const arrayPost = Object.entries(response);
+            //     console.log(arrayPost);
+            //     const [sucess, message, data] = arrayPost
+            //     console.log(data)
+            //     const singlePostArray = Object.entries(data[1])
+            //     console.log(singlePostArray)
+            //     console.log(singlePostArray[0])
+
+                console.log(response.data.post)
+                const arrayPost = response.data.post;
+
                 //Read array
                 checkArray(arrayPost);
                 //Delete Cards
-                deleteCard();
+                deleteCard(arrayPost);
                  //Title effects of filters Feed/Latest
                 efectsTitles(arrayPost);
                 //filter by search criteria
@@ -208,18 +224,38 @@ $(document).ready( () => {
             }
         });   
     }
-
+    
+    // const checkArray = (arrayPost) => {
+    //     arrayPost.map((item,index)=>{
+    //         const postIndex = index;
+    //         const postId = item[0];
+    //         const postTitle = item[1].title;
+    //         const postUrl = item[1].url;
+    //         const postTags = item[1].tags.map(tag=>{
+    //             return tag;
+    //         });
+    //         const postLikes = item[1].likes;
+    //         const protoDate = item[1].date;
+    //         createCard(postIndex,postId,postTitle,postUrl,postTags,postLikes,protoDate);
+    //         return;
+    //     })
+    //     return;
+    // }
+    //checkArray modified for rendering posts
+    
     const checkArray = (arrayPost) => {
         arrayPost.map((item,index)=>{
+
             const postIndex = index;
-            const postId = item[0];
-            const postTitle = item[1].title;
-            const postUrl = item[1].url;
-            const postTags = item[1].tags.map(tag=>{
+            const postId = item._id;
+            const postTitle = item.title;
+            const postUrl = item.url;
+            const postTags = item.tags.map(tag => {
                 return tag;
             });
-            const postLikes = item[1].likes;
-            const protoDate = item[1].date;
+            const postLikes = item.likes;
+            const protoDate = item.date;
+
             createCard(postIndex,postId,postTitle,postUrl,postTags,postLikes,protoDate);
             return;
         })
