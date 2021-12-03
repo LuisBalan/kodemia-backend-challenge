@@ -211,10 +211,11 @@ $(document).ready( () => {
     getInfoPost();
 
     const deletePost = (id) => {
-
+        console.log(id);
         $.ajax({
             type: "DELETE",
-            url: `https://js-challenge-a0b1c-default-rtdb.firebaseio.com/${id}.json`,
+            //url: `https://js-challenge-a0b1c-default-rtdb.firebaseio.com/${id}.json`,
+            url: 'http://localhost:8080/post/' + id,
             success: (response) => {
                 console.log(response)
                 location.reload();
