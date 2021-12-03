@@ -271,19 +271,19 @@ $(document).ready( () => {
             }
             arrayPost.forEach(item=>{
                 if(criteriaSearch != ''){
-                    let titlePost = item[1].title.toLowerCase();
+                    let titlePost = item.title.toLowerCase();
                     if(titlePost.includes(criteriaSearch)){
                         
                         const postIndex = counter;
                         counter ++
-                        const postId = item[0];
-                        const postTitle = item[1].title;
-                        const postUrl = item[1].url;
-                        const postTags = item[1].tags.map(tag=>{
+                        const postId = item._id;
+                        const postTitle = item.title;
+                        const postUrl = item.url;
+                        const postTags = item.tags.map(tag=>{
                             return tag;
                         });
-                        const postLikes = item[1].likes;
-                        const protoDate = item[1].date;
+                        const postLikes = item.likes;
+                        const protoDate = item.date;
                         createCard(postIndex,postId,postTitle,postUrl,postTags,postLikes,protoDate);
                     }
                 }
@@ -375,10 +375,10 @@ $(document).ready( () => {
      
         function sortByTime() {
             return array.sort((post, otherPost) => {
-                if (post[1].date > otherPost[1].date) {
+                if (post.date > otherPost.date) {
                   return -1;
                 }
-                if (post[1].date < otherPost[1].date) {
+                if (post.date < otherPost.date) {
                   return 1;
                 }
                 return 0;
@@ -387,10 +387,10 @@ $(document).ready( () => {
 
         function sortByLikes() {
             return array.sort((post, otherPost) => {
-                if (post[1].likes > otherPost[1].likes) {
+                if (post.likes > otherPost.likes) {
                   return -1;
                 }
-                if (post[1].likes < otherPost[1].likes) {
+                if (post.likes < otherPost.likes) {
                   return 1;
                 }
                 return 0;
@@ -405,17 +405,17 @@ $(document).ready( () => {
             let counter = 0;
             arrLikes.forEach((post)=>{
                 
-                if(post[1].date >= referenceDate){
+                if(post.date >= referenceDate){
                     const postIndex = counter;
                     counter ++
-                    const postId = post[0];
-                    const postTitle = post[1].title;
-                    const postUrl = post[1].url;
-                    const postTags = post[1].tags.map(tag=>{
+                    const postId = post;
+                    const postTitle = post.title;
+                    const postUrl = post.url;
+                    const postTags = post.tags.map(tag=>{
                         return tag;
                     });
-                    const postLikes = post[1].likes;
-                    const protoDate = post[1].date;
+                    const postLikes = post.likes;
+                    const protoDate = post.date;
                     createCard(postIndex,postId,postTitle,postUrl,postTags,postLikes,protoDate);
                 }
             });
