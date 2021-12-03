@@ -170,7 +170,8 @@ $(document).ready( () => {
     const getInfoPost = () => {
         $.ajax({
             method: 'GET',
-            url: 'https://js-challenge-a0b1c-default-rtdb.firebaseio.com/.json',
+            // url: 'https://js-challenge-a0b1c-default-rtdb.firebaseio.com/.json',
+            url: `mongodb+srv://rafael:kodemia123@$cluster0.mohlf.mongodb.net/kodemia?retryWrites=true&w=majority`,
             
             success: (response) =>{
                 // callback cuando la petición es exitosa
