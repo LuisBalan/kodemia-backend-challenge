@@ -167,14 +167,22 @@ $(document).ready( () => {
         $(father).append(cardContainer);
     }
 
+    const URL = 'localhost:8080/post'
     const getInfoPost = () => {
         $.ajax({
             method: 'GET',
-            url: 'https://js-challenge-a0b1c-default-rtdb.firebaseio.com/.json',
+            // url: 'https://js-challenge-a0b1c-default-rtdb.firebaseio.com/.json',
+            // url: `https://localhost:8080/post/mongodb+srv://rafael:kodemia123@$cluster0.mohlf.mongodb.net/kodemia?retryWrites=true&w=majority`,
+                url: URL,
             
             success: (response) =>{
-                // callback when request succesful
+                console.log('successful request')
+                // callback cuando la petición es exitosa
                 console.log(response)
+                const person = JSON.parse(response)
+                console.log(person)
+                const arrayPost = Object.entries(response);
+                //console.log(arrayPost);
 
                 const arrayPost = Object.entries(response);
                 //Read array
