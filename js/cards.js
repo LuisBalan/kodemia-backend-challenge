@@ -167,11 +167,13 @@ $(document).ready( () => {
         $(father).append(cardContainer);
     }
 
+    const URL = 'localhost:8080/post'
     const getInfoPost = () => {
         $.ajax({
             method: 'GET',
-            url: 'https://js-challenge-a0b1c-default-rtdb.firebaseio.com/.json',
-            // url: `mongodb+srv://rafael:kodemia123@$cluster0.mohlf.mongodb.net/kodemia?retryWrites=true&w=majority`,
+            // url: 'https://js-challenge-a0b1c-default-rtdb.firebaseio.com/.json',
+            // url: `https://localhost:8080/post/mongodb+srv://rafael:kodemia123@$cluster0.mohlf.mongodb.net/kodemia?retryWrites=true&w=majority`,
+                url: URL,
             
             success: (response) =>{
                 console.log('successful request')
