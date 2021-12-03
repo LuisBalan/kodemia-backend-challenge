@@ -7,7 +7,7 @@ $(document).ready( () => {
         //console.log(father);
         //img
         const cardContainer = document.createElement('div');
-        cardContainer.className = 'card rounded-3 mb-2';
+        cardContainer.className = 'card rounded-3 mb-2 elementToRemove';
         cardContainer.id = id;
         //console.log(cardContainer);
         const cardImage = document.createElement('img');
@@ -151,7 +151,7 @@ $(document).ready( () => {
         timeText.textContent = '6 min read';
         $(timeRead).append(timeText);
         const buttonDelete = document.createElement('button');
-        buttonDelete.className = 'btn btn-light border border-danger';
+        buttonDelete.className = 'btn btn-light border border-danger deleteCard';
         buttonDelete.textContent = 'Delete'
         $(timeRead).append(buttonDelete);
         //Appends
@@ -184,29 +184,214 @@ $(document).ready( () => {
                 const arrayPost = Object.entries(response);
                 //console.log(arrayPost);
 
-                arrayPost.forEach((item,index)=>{
-                    const postIndex = index;
-                    const postId = item[0];
-                    const postTitle = item[1].title;
-                    const postUrl = item[1].url;
-                    const postTags = item[1].tags.map(tag=>{
-                        return tag;
-                    });
-                    const postLikes = item[1].likes;
-                    const protoDate = item[1].date;
-                    createCard(postIndex,postId,postTitle,postUrl,postTags,postLikes,protoDate);
-                });
+                const arrayPost = Object.entries(response);
+                //Read array
+                checkArray(arrayPost);
+                //Delete Cards
+                deleteCard();
+                 //Title effects of filters Feed/Latest
+                efectsTitles(arrayPost);
+                //filter by search criteria
+                filterBySearchButton(arrayPost);
             },
             error: (error) => {
-                // callback para cuando hay un error
                 console.log(error)
             },
             async: true,
         });
-        
     }
     getInfoPost();
-    
-});
 
+    const deletePost = (id) => {
+
+        $.ajax({
+            type: "DELETE",
+            url: `https://js-challenge-a0b1c-default-rtdb.firebaseio.com/${id}.json`,
+            success: (response) => {
+                console.log(response)
+                location.reload();
+            },
+            error: (error) => {
+                console.log(error)
+            }
+        });   
+    }
+
+    const checkArray = (arrayPost) => {
+        arrayPost.map((item,index)=>{
+            const postIndex = index;
+            const postId = item[0];
+            const postTitle = item[1].title;
+            const postUrl = item[1].url;
+            const postTags = item[1].tags.map(tag=>{
+                return tag;
+            });
+            const postLikes = item[1].likes;
+            const protoDate = item[1].date;
+            createCard(postIndex,postId,postTitle,postUrl,postTags,postLikes,protoDate);
+            return;
+        })
+        return;
+    }
+
+    const filterBySearchButton = (arrayPost) =>{
+        $('.button-container').click((e) => { 
+            const criteriaSearch = $.trim($('.form-control_bar').val().toLowerCase())
+            let counter = 0;
+            if(criteriaSearch != ''){
+                $('.main__body').children().not(':first').remove();
+            }
+            arrayPost.forEach(item=>{
+                if(criteriaSearch != ''){
+                    let titlePost = item[1].title.toLowerCase();
+                    if(titlePost.includes(criteriaSearch)){
+                        
+                        const postIndex = counter;
+                        counter ++
+                        const postId = item[0];
+                        const postTitle = item[1].title;
+                        const postUrl = item[1].url;
+                        const postTags = item[1].tags.map(tag=>{
+                            return tag;
+                        });
+                        const postLikes = item[1].likes;
+                        const protoDate = item[1].date;
+                        createCard(postIndex,postId,postTitle,postUrl,postTags,postLikes,protoDate);
+                    }
+                }
+            })
+            if(counter===0 && criteriaSearch != ''){
+                console.log('No hay coincidencias');
+                alert('There are no post with that criteria, try with other word')
+                location.reload()
+            }
+        });
+    }
+    
+
+    const deleteCard = () => {
+        $('.deleteCard').click((e) => { 
+            console.log(e)
+            const parentNode = e.target.parentNode.parentNode.parentNode.parentNode
+            alert('El Post será eliminado');
+            //console.log(parentNode.id)
+            parentNode.remove();
+            deletePost(parentNode.id);
+         });
+    }
+
+    const efectsTitles = (array) => {
+         //Title effects of filters Feed/Latest
+         $('.headFilter').click((e) => {
+            e.preventDefault();
+            const classLeft = '.headFilter'
+            $(classLeft).removeClass("headSelected");
+            const itemSelected = e.target
+            //console.log(itemSelected.id);
+
+            if(itemSelected.id==='latest'){
+                filterByCriteria(array,'latest')
+            }else if(itemSelected.id==='feed'){
+                location.reload()
+            }
+
+            $(itemSelected).addClass("headSelected")
+
+            if(itemSelected.id==='top' || itemSelected.id==='week' || itemSelected.id==='month' || itemSelected.id==='year'){
+                $('.topLinked').css('visibility','visible');
+                filterByCriteria(array,'week');
+            }else{
+                $('.topLinked').css('visibility','hidden');
+            }                  
+         });
+        //Title effects of filters Week/Month/Year
+        $('.headFilterByTime').click((e) => {
+           e.preventDefault();
+           const classRight = '.headFilterByTime'
+           $(classRight).removeClass("headSelected");
+           const itemSelectedRight = e.target
+           //console.log(itemSelectedRight.id);
+           $(itemSelectedRight).addClass("headSelected");
+
+           if(itemSelectedRight.id==='week'){
+                filterByCriteria(array,'week');
+           }else if(itemSelectedRight.id==='month'){
+                filterByCriteria(array,'month');
+           }else if(itemSelectedRight.id==='year'){
+                filterByCriteria(array,'year');
+           }
+                
+        });
+    }
+
+    const filterByCriteria = (array,criteria) => {
+        //Clean DOM except first child
+        $('.main__body').children().not(':first').remove();
+        const arrLikes = sortByLikes();
+        switch (criteria) {
+            case 'latest':
+                checkArray(sortByTime());
+                break;
+            case 'week':                    
+                filterByRange(7);
+                break;
+            case 'month':
+                filterByRange(31);
+                break;
+            case 'year':
+                filterByRange(365);
+                break;
+        }
+
+        deleteCard();
+     
+        function sortByTime() {
+            return array.sort((post, otherPost) => {
+                if (post[1].date > otherPost[1].date) {
+                  return -1;
+                }
+                if (post[1].date < otherPost[1].date) {
+                  return 1;
+                }
+                return 0;
+            });
+        }
+
+        function sortByLikes() {
+            return array.sort((post, otherPost) => {
+                if (post[1].likes > otherPost[1].likes) {
+                  return -1;
+                }
+                if (post[1].likes < otherPost[1].likes) {
+                  return 1;
+                }
+                return 0;
+            });
+        }
+
+        function filterByRange(range) {
+            const actualDate = new Date();
+            actualDate.setDate(actualDate.getDate() - range);
+
+            const referenceDate = actualDate.toISOString().split('T')[0];
+            let counter = 0;
+            arrLikes.forEach((post)=>{
+                
+                if(post[1].date >= referenceDate){
+                    const postIndex = counter;
+                    counter ++
+                    const postId = post[0];
+                    const postTitle = post[1].title;
+                    const postUrl = post[1].url;
+                    const postTags = post[1].tags.map(tag=>{
+                        return tag;
+                    });
+                    const postLikes = post[1].likes;
+                    const protoDate = post[1].date;
+                    createCard(postIndex,postId,postTitle,postUrl,postTags,postLikes,protoDate);
+                }
+            });
+        }
+    }
+});
 
